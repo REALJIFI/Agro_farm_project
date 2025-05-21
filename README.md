@@ -1,6 +1,47 @@
-# 🌦 Weather Pipeline Project
+# 🌦  Project Overview
+This project builds a modular and scalable ETL (Extract, Transform, Load) pipeline to collect real-time weather data from the OpenWeatherMap API for multiple locations. The pipeline extracts relevant weather attributes such as temperature, humidity, wind speed, and weather conditions, transforms and formats the data for readability, and loads it into a Snowflake data warehouse for long-term storage, analytics, or dashboarding.
+The solution is structured for clarity, modularity, and future scalability.
 
-This project is a modular ETL pipeline that fetches real-time weather data using the OpenWeatherMap API, based on city coordinates (latitude and longitude) provided in an Excel file.
+## Project Problem
+Agricultural stakeholders and environmental analysts in regions like Nigeria often struggle to access and aggregate timely, accurate weather data from multiple geographic locations. This lack of accessible environmental data hinders effective decision-making in:
+
+Agricultural planning and irrigation
+
+Early warning systems for extreme weather
+
+Climate and environmental impact assessments
+
+Location-specific trend analysis and forecasting
+
+Manual data collection is error-prone, slow, and not scalable.
+
+## Recommendations
+To solve these challenges, this project implements:
+
+Automated Data Extraction:
+
+Uses OpenWeatherMap API to fetch real-time weather data for a list of cities with pre-defined coordinates from an Excel file.
+
+Data Transformation:
+
+Converts Unix timestamps to human-readable formats (date and time).
+
+Cleans and structures the data for database ingestion.
+
+Ensures data consistency and standardization.
+
+Cloud-Based Storage in Snowflake:
+
+Scalable cloud warehouse ingestion using SQLAlchemy and environment variables for secure credential management.
+
+Table creation and appending logic included for incremental loads.
+
+Modular Codebase:
+
+Separated into extract.py, transform.py, and load.py scripts.
+
+Enables easy debugging, maintenance, and reuse in other projects.
+
 
 ## 📂 Project Structure
 
@@ -21,48 +62,3 @@ weather_pipeline/
 - requests
 - openpyxl
 
-Install via:
-
-```bash
-pip install pandas requests openpyxl
-```
-
-## 🚀 How to Run
-
-1. Put your input file named `API_WORK_FILES_cities.xlsx` in the root directory.
-2. Run:
-
-```bash
-python weather_pipeline/main.py
-```
-
-3. Output will be saved as `weather_output.xlsx`.
-
-## 📝 Input Format
-
-The Excel file must contain columns:
-
-- `latitude`
-- `longitude`
-
-## 🧾 Output
-
-An Excel file with columns:
-
-- location
-- weather
-- description
-- temperature (°C)
-- pressure
-- humidity
-- wind_speed
-- datetime_utc
-- timezone_offset_sec
-
-## 📒 Logging
-
-Errors are logged in `weather_errors.log`.
-
-## 🔐 Note
-
-Your API key is stored in `config.py`. Be cautious when pushing this to public repositories.
