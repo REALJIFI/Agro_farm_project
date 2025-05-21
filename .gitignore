@@ -1,2 +1,2 @@
-*.xlsx
+raw_data/*.csv
 .env
